@@ -71,13 +71,13 @@
                 </tr>`;
 
             for (let i = 0; i < items.length; i++) {
-                const name = items[i].getElementsByTagName("name")[0]?.textContent || "N/A";
-                const value = items[i].getElementsByTagName("value")[0]?.textContent || "N/A";
+                const date = items[i].getElementsByTagName("date")[0]?.textContent || "N/A";
+                const conversation = items[i].getElementsByTagName("conversation")[0]?.textContent || "N/A";
 
                 html += `
                 <tr>
-                    <td>${name}</td>
-                    <td>${value}</td>
+                    <td>${date}</td>
+                    <td>${conversation}</td>
                 </tr>`;
             }
 

@@ -1,10 +1,11 @@
 <items>
     <item>
-        <name>Item1</name>
-        <value>Value1</value>
-    </item>
-    <item>
-        <name>Item2</name>
-        <value>Value2</value>
+        <date>15/12/24</date>
+        <conversation>
+            S: the river is high today!<xsl:text>&#xD;</xsl:text>
+            E: I wonder how many dead bodies are in there?<xsl:text>&#xD;</xsl:text>
+            S: I’m telling mum…<xsl:text>&#xD;</xsl:text>
+            E: don’t tell or I’m throwing you in!<xsl:text>&#xD;</xsl:text>
+        </conversation>
     </item>
 </items>
