@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Parser Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f4f4f4;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Parsed XML Data</h1>
+    <div id="output"></div>
+
+    <script>
+        // Function to load and parse XML, then display it
+        function loadAndDisplayXML(filePath) {
+            // Create a new XMLHttpRequest object
+            const xhr = new XMLHttpRequest();
+
+            // Configure it: GET-request for the XML file
+            xhr.open("GET", filePath, true);
+            xhr.responseType = "document";
+            xhr.overrideMimeType("application/xml");
+
+            // Event listener for when the request is completed
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const xmlDoc = xhr.response;
+
+                    // Call function to process and display the XML
+                    displayXMLData(xmlDoc);
+                } else {
+                    console.error(`Failed to load XML file: ${xhr.status}`);
+                    document.getElementById("output").textContent = "Failed to load XML file.";
+                }
+            };
+
+            // Handle errors
+            xhr.onerror = function () {
+                console.error("An error occurred while loading the XML file.");
+                document.getElementById("output").textContent = "An error occurred while loading the XML file.";
+            };
+
+            // Send the request
+            xhr.send();
+        }
+
+        // Function to display XML data in the HTML
+        function displayXMLData(xmlDoc) {
+            const items = xmlDoc.getElementsByTagName("item");
+            let html = `<table>
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>`;
+
+            for (let i = 0; i < items.length; i++) {
+                const name = items[i].getElementsByTagName("name")[0]?.textContent || "N/A";
+                const value = items[i].getElementsByTagName("value")[0]?.textContent || "N/A";
+
+                html += `
+                <tr>
+                    <td>${name}</td>
+                    <td>${value}</td>
+                </tr>`;
+            }
+
+            html += `</table>`;
+            document.getElementById("output").innerHTML = html;
+        }
+
+        // Load and display the XML file
+        loadAndDisplayXML("conversations.xml");
+    </script>
+</body>
+</html>
